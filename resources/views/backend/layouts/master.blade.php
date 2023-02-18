@@ -108,7 +108,6 @@
         @include('backend.layouts.inc.footer')
     </div>
 
-
     @include('backend.layouts.inc.script')
 
 </body>
