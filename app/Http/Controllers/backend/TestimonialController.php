@@ -122,7 +122,7 @@ class TestimonialController extends Controller
 
         if($testimonial->client_image){
             $photo_location = 'uploads/testimonials/'.$testimonial->client_image;
-            unlink($photo_location);
+            @unlink($photo_location);
         }
 
         $testimonial->delete();
@@ -140,7 +140,7 @@ class TestimonialController extends Controller
                //delete photo
                 $photo_location = 'public/uploads/testimonials/';
                 $old_photo_location = $photo_location . $testimonial->client_image;
-                unlink(base_path($old_photo_location));
+                @unlink(base_path($old_photo_location));
             }
             $photo_location = 'public/uploads/testimonials/';
             $uploaded_photo = $request->file('client_image');

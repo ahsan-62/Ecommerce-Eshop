@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\TestimonialController;
+use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,9 +44,9 @@ Route::middleware(['auth'])->group(function(){
 });
 
 
+Route::prefix('')->group(function(){
 
-Route::get('/', function () {
-    return view('frontend.pages.home');
+    Route::get('/',[HomeController::class,'home'])->name('home');
+
 });
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');

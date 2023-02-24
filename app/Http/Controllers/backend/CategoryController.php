@@ -65,13 +65,14 @@ class CategoryController extends Controller
                 //delete old photo
                 $photo_location = 'public/uploads/category/';
                 $old_photo_location = $photo_location . $category->category_image;
-                unlink(base_path($old_photo_location));
+                @unlink(base_path($old_photo_location));
+
             }
             $photo_location = 'public/uploads/category/';
             $uploaded_photo = $request->file('category_image');
             $new_photo_name = $category->id . '.' . $uploaded_photo->getClientOriginalExtension();
             $new_photo_location = $photo_location . $new_photo_name;
-            Image::make($uploaded_photo)->resize(300,260)->save(base_path($new_photo_location), 40);
+            Image::make($uploaded_photo)->resize(250,250)->save(base_path($new_photo_location), 40);
             //$user = User::find($category->id);
             $check = $category->update([
                 'category_image' => $new_photo_name,
@@ -139,7 +140,7 @@ class CategoryController extends Controller
 
         if($category->category_image){
             $photo_location = 'uploads/category/'.$category->category_image;
-            unlink($photo_location);
+            @unlink($photo_location);
         }
 
         $category->delete();
